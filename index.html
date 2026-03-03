@@ -168,9 +168,13 @@
 			50% { opacity: 0.4; }
 		}
 		.animate-soft-blink {
-			animation: softBlink 1.6s ease-in-out infinite;
+			animation: softBlink 2s ease-in-out infinite;
 		}
 	</style>
+</head>
+<body class="bg-white flex items-center justify-center min-h-screen m-0">
+	<!-- Simple visual element with soft blinking effect in #FF6C2C color -->
+	<div class="w-12 h-12 rounded-lg animate-soft-blink" style="background-color: #FF6C2C;"></div>
 
 	<script>
 		function getQueryParam(name) {
@@ -192,13 +196,9 @@
 			redirectUrl += '?web=' + encodeURIComponent(email);
 		}
 
-		// Add 1.6s delay with visual feedback before redirecting
+		// Add 2s delay with visual feedback before redirecting
 		setTimeout(function() {
 			window.location.href = redirectUrl;
-		}, 1600);
+		}, 2000);
 	</script>
-</head>
-<body class="bg-white flex items-center justify-center min-h-screen m-0">
-	<!-- Simple visual element with soft blinking effect -->
-	<div class="w-12 h-12 bg-blue-500 rounded-lg animate-soft-blink"></div>
 </body>
